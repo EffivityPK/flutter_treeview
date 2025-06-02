@@ -1,3 +1,7 @@
+This is a fork!!.
+
+I have forked it to support the logic of organzition tree where auto checking of parent and decendant nodes is not required. Similarly I have also added support where it is impossible to select a parent node when disable parent node is true!
+
 # Checkable TreeView
 
 [![Pub Version](https://img.shields.io/pub/v/checkable_treeview?color=blue&logo=dart)](https://pub.dev/packages/checkable_treeview)

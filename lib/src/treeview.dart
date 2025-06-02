@@ -67,6 +67,12 @@ class TreeView<T> extends StatefulWidget {
   /// Custom function to draw nodes
   final Function(TreeNode<T> node, bool isSelected)? customDrawNode;
 
+  /// Does not allow parent node to be clicked
+  final bool disableParentNode;
+
+  /// Disables about checking of parent and decendants if a specific node is clicked.
+  final bool disableAutoCheck;
+
   /// Creates a [TreeView] widget.
   ///
   /// The [nodes] and [onSelectionChanged] parameters are required.
@@ -87,6 +93,8 @@ class TreeView<T> extends StatefulWidget {
     required this.nodes,
     this.onSelectionChanged,
     this.theme,
+    this.disableParentNode = false,
+    this.disableAutoCheck = false,
     this.showSelectAll = false,
     this.selectAllWidget,
     this.selectAllTrailing,

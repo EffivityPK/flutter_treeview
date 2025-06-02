@@ -185,7 +185,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
       } else {
         _updateNodeAndDescendants(node, isSelected);
       }
-      _updateAncestorsRecursively(node);
+      if(!widget.disableAutoCheck == false) _updateAncestorsRecursively(node);
       _updateSelectAllState();
     });
     _notifySelectionChanged();
@@ -203,8 +203,10 @@ class TreeViewState<T> extends State<TreeView<T>> {
     if (!node._hidden) {
       node._isSelected = isSelected;
       node._isPartiallySelected = false;
-      for (var child in node.children) {
-        _updateNodeAndDescendants(child, isSelected);
+      if(widget.disableAutoCheck == false){
+        for (var child in node.children) {
+          _updateNodeAndDescendants(child, isSelected);
+        }
       }
     }
   }
@@ -246,7 +248,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: InkWell(
-              onTap: () => _updateNodeSelection(node, !node._isSelected),
+              onTap: () =>  (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, !node._isSelected) : ()=>{},
               child: Row(
                 children: [
                   SizedBox(
@@ -273,7 +275,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
                           : (node._isPartiallySelected ? null : false),
                       tristate: true,
                       onChanged: (bool? value) =>
-                          _updateNodeSelection(node, value ?? false),
+                          (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, value ?? false) : ()=> {},
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ),
