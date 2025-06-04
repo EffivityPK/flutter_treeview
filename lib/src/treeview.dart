@@ -73,6 +73,9 @@ class TreeView<T> extends StatefulWidget {
   /// Disables about checking of parent and decendants if a specific node is clicked.
   final bool disableAutoCheck;
 
+  /// Disables clicks on the tree nodes, making them read-only.
+  final bool isReadOnly;
+
   /// Creates a [TreeView] widget.
   ///
   /// The [nodes] and [onSelectionChanged] parameters are required.
@@ -101,6 +104,7 @@ class TreeView<T> extends StatefulWidget {
     this.initialExpandedLevels,
     this.showExpandCollapseButton = false,
     this.customDrawNode,
+    this.isReadOnly = false,
   });
 
   @override

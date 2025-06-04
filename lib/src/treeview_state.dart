@@ -179,6 +179,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
   }
 
   void _updateNodeSelection(TreeNode<T> node, bool? isSelected) {
+    if(widget.isReadOnly) return;
     setState(() {
       if (isSelected == null) {
         _handlePartialSelection(node);
