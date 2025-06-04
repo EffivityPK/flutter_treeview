@@ -185,7 +185,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
       } else {
         _updateNodeAndDescendants(node, isSelected);
       }
-      if(!widget.disableAutoCheck == false) _updateAncestorsRecursively(node);
+      if(!widget.disableAutoCheck) _updateAncestorsRecursively(node);
       _updateSelectAllState();
     });
     _notifySelectionChanged();
