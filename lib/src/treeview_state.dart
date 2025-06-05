@@ -249,6 +249,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: InkWell(
+              key: node.key,
               onTap: () =>  (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, !node._isSelected) : ()=>{},
               child: Row(
                 children: [

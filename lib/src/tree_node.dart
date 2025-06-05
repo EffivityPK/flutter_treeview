@@ -27,6 +27,9 @@ class TreeNode<T> {
   /// The list of child nodes for this node.
   final List<TreeNode<T>> children;
 
+  /// The Key for the treeNode
+  final Key? key;
+
   TreeNode<T>? _parent;
   bool _hidden = false;
   int _originalIndex = 0;
@@ -41,6 +44,7 @@ class TreeNode<T> {
     this.trailing,
     this.data,
     required this.children,
+    this.key,
     TreeNode<T>? parent,
     bool hidden = false,
     int originalIndex = 0,
@@ -73,6 +77,8 @@ class TreeNode<T> {
   /// The [isSelected] parameter controls the initial selection state of the node.
   ///
   /// The [children] parameter is an optional list of child nodes.
+  /// 
+  /// The [key] parameter is an optional field to hold key
   factory TreeNode({
     required Widget label,
     T? value,
@@ -81,6 +87,7 @@ class TreeNode<T> {
     dynamic data,
     bool isSelected = false,
     List<TreeNode<T>>? children,
+    Key? key
   }) {
     return TreeNode._internal(
       label: label,
@@ -90,6 +97,7 @@ class TreeNode<T> {
       data: data,
       children: children ?? [],
       isSelected: isSelected,
+      key: key
     );
   }
 }
