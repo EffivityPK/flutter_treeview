@@ -179,7 +179,6 @@ class TreeViewState<T> extends State<TreeView<T>> {
   }
 
   void _updateNodeSelection(TreeNode<T> node, bool? isSelected) {
-    if(widget.isReadOnly) return;
     setState(() {
       if (isSelected == null) {
         _handlePartialSelection(node);
@@ -250,7 +249,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
             cursor: SystemMouseCursors.click,
             child: InkWell(
               key: node.key,
-              onTap: () =>  (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, !node._isSelected) : ()=>{},
+              onTap: widget.isReadOnly? null : () =>  (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, !node._isSelected) : ()=>{},
               child: Row(
                 children: [
                   SizedBox(
@@ -276,7 +275,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
                           ? true
                           : (node._isPartiallySelected ? null : false),
                       tristate: true,
-                      onChanged: (bool? value) =>
+                      onChanged: widget.isReadOnly ? null : (bool? value) =>
                           (node.children.isNotEmpty && !widget.disableParentNode) || node.children.isEmpty ? _updateNodeSelection(node, value ?? false) : ()=> {},
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
