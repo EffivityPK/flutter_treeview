@@ -369,7 +369,9 @@ class TreeViewState<T> extends State<TreeView<T>> {
       node._isPartiallySelected = false;
     } else if (anySelected) {
       node._isSelected = false;
-      node._isPartiallySelected = true;
+      if(!widget.disableAutoCheck){
+        node._isPartiallySelected = true;
+      }
     } else {
       node._isSelected = false;
       node._isPartiallySelected = false;
