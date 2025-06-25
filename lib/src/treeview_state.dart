@@ -364,7 +364,7 @@ class TreeViewState<T> extends State<TreeView<T>> {
     bool anySelected = visibleChildren
         .any((child) => child._isSelected || child._isPartiallySelected);
 
-    if (allSelected) {
+    if (allSelected && !widget.disableAutoCheck) {
       node._isSelected = true;
       node._isPartiallySelected = false;
     } else if (anySelected) {
